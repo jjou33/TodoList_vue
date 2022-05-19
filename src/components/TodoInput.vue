@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="searchKeyword" v-on:keyup.enter="addTodo" />
+    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" />
     <span class="addContainer" v-on:click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
     </span>
@@ -11,19 +11,19 @@
 export default {
   data: function() {
     return {
-      searchKeyword: ""
+      newTodoItem: ""
     };
   },
   methods: {
     addTodo: function() {
-      if (this.searchKeyword !== "") {
-        let obj = { completed: false, item: this.searchKeyword };
-        localStorage.setItem(this.searchKeyword, JSON.stringify(obj));
+      if (this.newTodoItem !== "") {
+        let obj = { completed: false, item: this.newTodoItem };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
         this.clearInput();
       }
     },
     clearInput: function() {
-      this.searchKeyword = "";
+      this.newTodoItem = "";
     }
   }
 };
