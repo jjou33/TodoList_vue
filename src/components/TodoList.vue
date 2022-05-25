@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li
         v-bind:key="todoItem.item"
         v-for="(todoItem, index) in propsdata"
@@ -18,7 +18,7 @@
           <i class="fa-solid fa-trash"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
