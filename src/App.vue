@@ -22,17 +22,6 @@ export default {
       todoItems: []
     };
   },
-  created: function() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-          this.todoItems.push(
-            JSON.parse(localStorage.getItem(localStorage.key(i)))
-          );
-        }
-      }
-    }
-  },
   methods: {
     addOneItem: function(todoItem) {
       const obj = { completed: false, item: todoItem };
@@ -43,7 +32,12 @@ export default {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    clearAllItems: function() {
+    toggleOneItem(todoItem, index) {
+      todoItem.completed = !todoItem.completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
+    clearAllItems() {
       localStorage.clear();
       this.todoItems = [];
     }

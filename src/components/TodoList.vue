@@ -3,7 +3,7 @@
     <transition-group name="list" tag="ul">
       <li
         v-bind:key="todoItem.item"
-        v-for="(todoItem, index) in propsdata"
+        v-for="(todoItem, index) in this.$store.state.todoItems"
         class="shadow"
       >
         <i
@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  props: ["propsdata"],
   methods: {
     removeTodo: function(todoItem, index) {
       this.$emit("removeItem", todoItem, index);
@@ -35,8 +34,7 @@ export default {
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
-  },
-  created: function() {}
+  }
 };
 </script>
 
