@@ -25,14 +25,17 @@
 <script>
 export default {
   methods: {
-    removeTodo: function(todoItem, index) {
-      this.$emit("removeItem", todoItem, index);
-      console.log(todoItem);
+    removeTodo(todoItem, index) {
+      this.$store.commit("removeOneItem", {
+        todoItem,
+        index
+      });
     },
-    toggleComplete: function(todoItem, index) {
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    toggleComplete(todoItem, index) {
+      this.$store.commit("toggleComplete", {
+        todoItem,
+        index
+      });
     }
   }
 };
