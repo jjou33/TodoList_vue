@@ -22,7 +22,7 @@
 
 <script>
 import Modal from "./common/Modal.vue";
-
+import { mapMutations } from "vuex";
 export default {
   data: function() {
     return {
